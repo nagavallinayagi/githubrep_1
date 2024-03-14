@@ -65,7 +65,7 @@ function deleteMovie(id)
 function editMovie(id)
 {
     // console.log('id');
-    fetch(`https://65dcc5e8e7edadead7ecd9de.mockapi.io/movies/${id}`).then(data=>data.json()).then(movie=>{
+    
         
      //to assing value attr of textbox(form)
      //const name=document.getElementById('name').value
@@ -73,21 +73,24 @@ function editMovie(id)
      //const trailer=document.getElementById('trailer').value
      
     //to read name,avatar and trailer from user obj(from mockapi)
-        name=movie.name
-        avatar=movie.avatar
-        trailer=movie.trailer
-        id=movie.id
+        
         let updateform=`<div class="add-movie-form"><input placeholder="Movie Name" id='name'>
         <input placeholder="Movie Picture" id='avatar'><input placeholder="Movie Trailer" id='trailer'>
-        <button onclick="updateMovie()">Update</button></div>`   
-    movieFormContainer.innerHTML=updateform
+        <button onclick="updateMovie()">Update</button></div>` 
+        fetch(`https://65dcc5e8e7edadead7ecd9de.mockapi.io/movies/${id}`).then(data=>data.json()).then(movie=>{  
+        name.value=movie.name
+        avatar.value=movie.avatar
+        trailer.value=movie.trailer
+        })
+        movieFormContainer.innerHTML=updateform
+  
         //to assing value attr of textbox(form)
      
 
              console.log(id,name,avatar,trailer);
 
 
-    })
+    
     
 }
 function updateMovie()
